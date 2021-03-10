@@ -1,6 +1,7 @@
 ﻿using DesignCrowd.HolidayRules;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DesignCrowd.Services
 {
@@ -20,12 +21,12 @@ namespace DesignCrowd.Services
         public IList<DateTime> GetHolidays(DateTime firstDate, DateTime secondData)
         {
             var holidays = new List<DateTime>();
-
+            //Same Holidays will be added here
             foreach (var rule in _rules)
             {
                 holidays.AddRange(rule.GetHolidays(firstDate, secondData));
             }
-            return holidays;
+            return holidays.Select(x => x.Date).Distinct().ToList();
         }
     }
 }

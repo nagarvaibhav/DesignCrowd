@@ -24,18 +24,15 @@ namespace DesignCrowd.HolidayRules
             var holidays = new List<DateTime>();
             while (firstDate.Date < secondData.Date)
             {
-                if (Holidays.Any(d => d.Day == firstDate.Day && d.Month == firstDate.Month))
+                DateTime d = firstDate;
+                while (d < secondData)
                 {
-                    DateTime d = firstDate;
-                    while (true)
+                    if (!d.IsWeekend() && !holidays.Any(x => x.Date == d.Date) && Holidays.Any(da => da.Day == firstDate.Day && da.Month == firstDate.Month))
                     {
-                        if (!d.IsWeekend() && !holidays.Any(x => x.Date == d.Date))
-                        {
-                            holidays.Add(new DateTime(d.Year, d.Month, d.Day));
-                            break;
-                        }
-                        d = d.AddDays(1);
+                        holidays.Add(new DateTime(d.Year, d.Month, d.Day));
+                        break;
                     }
+                    d = d.AddDays(1);
                 }
                 firstDate = firstDate.AddDays(1);
             }

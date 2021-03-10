@@ -14,7 +14,9 @@ namespace DesignCrowd.HolidayRules
         {
             new Holiday{ Day = 25, Month = 4 },
             new Holiday{ Day = 25, Month = 12 },
-            new Holiday{ Day = 26, Month = 1 }
+            new Holiday{ Day = 26, Month = 1 },
+            new Holiday{ Day = 25, Month = 12 },
+            new Holiday{ Day = 26, Month = 12 }
         };
 
         public IList<DateTime> GetHolidays(DateTime firstDate, DateTime secondData)

@@ -1,7 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿using DesignCrowd.Infrastructure;
 using DesignCrowd.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DesignCrowd.HolidayRules
 {
@@ -20,7 +21,7 @@ namespace DesignCrowd.HolidayRules
             var holidays = new List<DateTime>();
             while (firstDate.Date < secondData.Date)
             {
-                var week = (firstDate.Day / 7) + 1;
+                var week = firstDate.GetWeekOfMonth();
                 if (Holidays.Any(d => week == d.Week && d.DayOfWeek == firstDate.DayOfWeek && d.Month == firstDate.Month))
                 {
                     holidays.Add(new DateTime(firstDate.Year, firstDate.Month, firstDate.Day));
